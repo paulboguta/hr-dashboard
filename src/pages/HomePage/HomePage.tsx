@@ -10,27 +10,19 @@ import {
 export const HomePage = () => {
   const navigate = useNavigate();
 
-  const onClickMoveToSignUp = () => {
-    navigate("/signup");
-  };
-
-  const onClickMoveToSignIn = () => {
-    navigate("/signin");
-  };
-
   return (
     <WrapperPage>
       <WrapperContent>
         <HeaderStyled>HR Analytics</HeaderStyled>
         <WrapperButtons>
           <ButtonStyled
-            onClick={onClickMoveToSignUp}
+            onClick={() => navigate("/signup")}
             buttonBackground="#dd7973"
           >
             Sign Up
           </ButtonStyled>
           <ButtonStyled
-            onClick={onClickMoveToSignIn}
+            onClick={() => navigate("/signin")}
             buttonBackground="#dd7973"
           >
             Sign In

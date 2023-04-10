@@ -1,6 +1,6 @@
 import { usePathname } from "hooks/hooks";
 import { useEffect, useState } from "react";
-import { AiOutlineCalendar, AiOutlineHome } from "react-icons/ai";
+import { AiOutlineHome } from "react-icons/ai";
 import { BsPerson } from "react-icons/bs";
 import { MdOutlineWorkOutline } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
@@ -56,14 +56,6 @@ export const SliderLinksWrapper = ({
         profileMenu={false}
       >
         <BsPerson />
-      </SliderLink>
-      <SliderLink
-        text="Calendar"
-        active={path === "/calendar"}
-        onClick={() => onClickLink("/calendar")}
-        profileMenu={false}
-      >
-        <AiOutlineCalendar />
       </SliderLink>
     </>
   );
