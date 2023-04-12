@@ -3,14 +3,13 @@ import { AiOutlineHome } from "react-icons/ai";
 import { BsPerson } from "react-icons/bs";
 import { MdOutlineWorkOutline } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import { IModalNavProps } from "types/modal.types";
 import { usePathname } from "../../../hooks/hooks";
 import { SliderLink } from "./SliderLink";
 
-type ISliderLinksWrapperProps = Pick<
-  IModalNavProps,
-  "modalCreateOff" | "navigationOff"
->;
+interface ISliderLinksWrapperProps {
+  modalCreateOff: () => void;
+  navigationOff: () => void;
+}
 
 export const SliderLinksWrapper = ({
   modalCreateOff,

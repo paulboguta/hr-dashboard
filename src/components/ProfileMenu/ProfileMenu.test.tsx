@@ -12,7 +12,7 @@ describe("test profile menu", () => {
       <BrowserRouter>
         <Provider store={store}>
           <ThemeProvider theme={lightTheme}>
-            <ProfileMenu path="" />
+            <ProfileMenu />
           </ThemeProvider>
         </Provider>
       </BrowserRouter>

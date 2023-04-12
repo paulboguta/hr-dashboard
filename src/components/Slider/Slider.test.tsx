@@ -13,7 +13,10 @@ describe("test slider", () => {
       <BrowserRouter>
         <Provider store={store}>
           <ThemeProvider theme={lightTheme}>
-            <SliderLinksWrapper />
+            <SliderLinksWrapper
+              modalCreateOff={() => {}}
+              navigationOff={() => {}}
+            />
           </ThemeProvider>
         </Provider>
       </BrowserRouter>

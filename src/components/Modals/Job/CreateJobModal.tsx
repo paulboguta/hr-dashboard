@@ -3,7 +3,6 @@ import { useMemo } from "react";
 import { IconContext } from "react-icons";
 import { AiOutlineClose } from "react-icons/ai";
 import { createJob, fetchJobs } from "../../../features/jobs/jobs.service";
-import { IModalNavProps } from "../../../types/modal.types";
 import { createJobAction } from "../../../store/slices/jobsSlice";
 import { useAppDispatch } from "../../../store/store";
 import {
@@ -17,7 +16,9 @@ import {
   WrapperSide,
 } from "../CreateOfferCandidate.styles";
 
-type ICreateJobModalProps = Pick<IModalNavProps, "modalCreateToggle">;
+interface ICreateJobModalProps {
+  modalCreateToggle: () => void;
+}
 
 export const CreateJobModal = ({ modalCreateToggle }: ICreateJobModalProps) => {
   const dispatch = useAppDispatch();

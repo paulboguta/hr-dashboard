@@ -9,9 +9,7 @@ export const Slider = () => {
 
   return (
     <Wrapper navigationClicked={toShowNav}>
-      {toShowNav ? (
-        <ProfileMenu />
-      ) : null}
+      {toShowNav ? <ProfileMenu /> : null}
       <Mobile>
         {toShowNav ? (
           <SliderLinksWrapper

@@ -1,14 +1,13 @@
 import { GridColDef } from "@mui/x-data-grid";
 import { ICandidate } from "types/candidate.types";
 import { IJob } from "types/job.types";
-import { IModalNavProps } from "types/modal.types";
 
-export interface IJobsTableProps extends IModalNavProps {
+export interface IJobsTableProps {
   columns: GridColDef[];
   data: IJob[];
 }
 
-export interface ICandidateTableProps extends IModalNavProps {
+export interface ICandidateTableProps {
   columns: GridColDef[];
   data: ICandidate[];
 }

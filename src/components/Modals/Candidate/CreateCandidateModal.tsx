@@ -8,7 +8,6 @@ import {
 } from "../../../features/candidates/candidates.service";
 import { useAppDispatch } from "../../../store/store";
 import { createCandidateAction } from "../../../store/slices/candidatesSlice";
-import { IModalNavProps } from "../../../types/modal.types";
 import {
   ButtonClose,
   Header,
@@ -20,7 +19,9 @@ import {
   WrapperSide,
 } from "../CreateOfferCandidate.styles";
 
-type ICreateCandidateModalProps = Pick<IModalNavProps, "modalCreateToggle">;
+interface ICreateCandidateModalProps {
+  modalCreateToggle: () => void;
+}
 
 export const CreateCandidateModal = ({
   modalCreateToggle,
