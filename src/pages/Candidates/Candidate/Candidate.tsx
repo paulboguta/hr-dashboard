@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { IModalNavProps } from "../../types/modal.types";
 import { Header } from "../../../components/Header/Header";
 import { Slider } from "../../../components/Slider/Slider";
-import { usePathname } from "../../../hooks/hooks";
 import {
   Wrapper,
   WrapperMain,
@@ -35,53 +33,17 @@ export const Candidate = ({
   navigationOff,
   navigationToggle,
 }: ICandidateProps) => {
-  const [candidate, setCandidate] = useState({
-    name: "",
-    position: "",
-    email: "",
-    shortDescription: "",
-    longDescription: "",
-    logo: "",
-    id: "",
-    companyName: "",
-  });
   const {
     name,
     position,
-    email,
     shortDescription,
     longDescription,
     logo,
-    id,
     companyName,
   } = useSelector(
     (state: RootState) => state.rootReducer.currentCandidateReducer
   );
 
-  const currentID = usePathname().split("/").pop();
-
-  useEffect(() => {
-    setCandidate({
-      name,
-      position,
-      email,
-      shortDescription,
-      longDescription,
-      logo,
-      id,
-      companyName,
-    });
-  }, [
-    companyName,
-    currentID,
-    email,
-    id,
-    logo,
-    longDescription,
-    name,
-    position,
-    shortDescription,
-  ]);
   return (
     <Wrapper>
       <Header navigationToggle={navigationToggle} />
@@ -93,17 +55,17 @@ export const Candidate = ({
         />
         <WrapperCandidate>
           <WrapperTopCandidate>
-            <H2>{candidate.name}</H2>
-            <div>{candidate.position}</div>
+            <H2>{name}</H2>
+            <div>{position}</div>
           </WrapperTopCandidate>
           <hr />
           <WrapperContent>
-            <Logo src={candidate.logo} />
+            <Logo src={logo} />
             <Experience>
               <span>5 years of experience </span>
-              <div>Currently working in {candidate.companyName}</div>
+              <div>Currently working in {companyName}</div>
             </Experience>
-            <ShortDesc>{candidate.shortDescription}</ShortDesc>
+            <ShortDesc>{shortDescription}</ShortDesc>
             <Skills>
               <div>Skills</div>
               <li>React</li>
@@ -113,7 +75,7 @@ export const Candidate = ({
               <li>Nodejs</li>
               <li>AWS</li>
             </Skills>
-            <LongDesc>{candidate.longDescription}</LongDesc>
+            <LongDesc>{longDescription}</LongDesc>
           </WrapperContent>
         </WrapperCandidate>
       </WrapperMain>
