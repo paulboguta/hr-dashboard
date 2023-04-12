@@ -1,10 +1,10 @@
-import { Header } from "components/Header/Header";
-import { Slider } from "components/Slider/Slider";
-import { usePathname } from "hooks/hooks";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "store/store";
-import { IModalNavProps } from "types/modal.types";
+import { Header } from "../../../components/Header/Header";
+import { Slider } from "../../../components/Slider/Slider";
+import { usePathname } from "../../../hooks/hooks";
+import { RootState } from "../../../store/store";
+import { IModalNavProps } from "../../../types/modal.types";
 import { Wrapper, WrapperMain } from "../Jobs.styles";
 import {
   DateSalaryFlex,

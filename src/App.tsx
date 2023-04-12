@@ -1,19 +1,18 @@
-import { Calendar } from "pages/Calendar/Calendar";
-import { Candidate } from "pages/Candidates/Candidate/Candidate";
-import { Candidates } from "pages/Candidates/Candidates";
-import { Dashboard } from "pages/Dashboard/Dashboard";
-import { HomePage } from "pages/HomePage/HomePage";
-import { Job } from "pages/Jobs/Job/Job";
-import { Jobs } from "pages/Jobs/Jobs";
-import { Profile } from "pages/Profile/Profile";
-import { SignIn } from "pages/SignIn/SignIn";
-import { SignUp } from "pages/SignUp/SignUp";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import store from "store/store";
-import { GlobalStyle } from "styles/globalStyles";
-import { Theme } from "styles/Theme";
+import store from "./store/store";
+import { GlobalStyle } from "./styles/globalStyles";
+import { Theme } from "./styles/Theme";
+import { Candidate } from "./pages/Candidates/Candidate/Candidate";
+import { Candidates } from "./pages/Candidates/Candidates";
+import { Dashboard } from "./pages/Dashboard/Dashboard";
+import { HomePage } from "./pages/HomePage/HomePage";
+import { Job } from "./pages/Jobs/Job/Job";
+import { Jobs } from "./pages/Jobs/Jobs";
+import { Profile } from "./pages/Profile/Profile";
+import { SignIn } from "./pages/SignIn/SignIn";
+import { SignUp } from "./pages/SignUp/SignUp";
 
 const App = () => {
   const [isShowingCreate, setIsShowingCreate] = useState<boolean>(false);
@@ -100,17 +99,7 @@ const App = () => {
           />
         }
       />
-      <Route
-        path="/calendar"
-        element={
-          <Calendar
-            isShowingNavigation={isShowingNavigation}
-            navigationOff={navigationOff}
-            navigationToggle={navigationToggle}
-            modalCreateOff={modalCreateOff}
-          />
-        }
-      />
+
       <Route
         path="/profile"
         element={

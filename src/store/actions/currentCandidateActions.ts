@@ -1,6 +1,6 @@
-import { AppDispatch } from "store/store";
-import { ActionType } from "store/types";
-import { ICandidate } from "types/candidate.types";
+import { ActionType } from "../types";
+import { ICandidate } from "../../types/candidate.types";
+import { AppDispatch } from "../store";
 
 export const getCurrentCandidate =
   (candidate: ICandidate) => async (dispatch: AppDispatch) => {

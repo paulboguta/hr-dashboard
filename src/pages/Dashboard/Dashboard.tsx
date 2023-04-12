@@ -1,9 +1,9 @@
-import { WrapperStats } from "components/DashboardStats/WrapperStats";
-import { GridBlock } from "components/GridBlock/GridBlock";
-import { Header } from "components/Header/Header";
-import { Slider } from "components/Slider/Slider";
-import { IModalNavProps } from "types/modal.types";
-import { useDashboard } from "hooks/useDashboard";
+import { WrapperStats } from "../../components/DashboardStats/WrapperStats";
+import { GridBlock } from "../../components/GridBlock/GridBlock";
+import { Header } from "../../components/Header/Header";
+import { Slider } from "../../components/Slider/Slider";
+import { IModalNavProps } from "../../types/modal.types";
+import { useDashboard } from "../../hooks/useDashboard";
 import {
   Wrapper,
   WrapperMain,

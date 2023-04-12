@@ -1,6 +1,6 @@
 import { AnyAction } from "redux";
-import { IUserState } from "types/user.types";
-import { ActionType } from "store/types";
+import { IUserState } from "../../types/user.types";
+import { ActionType } from "../types";
 
 const initialState: IUserState = {
   username: "",

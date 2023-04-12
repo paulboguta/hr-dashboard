@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { HeaderStyled } from "pages/HomePage/HomePage.styles";
 import { CgProfile } from "react-icons/cg";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IconContext } from "react-icons";
 import { useMemo } from "react";
 import { IModalNavProps } from "types/modal.types";
+import { HeaderStyled } from "../../pages/HomePage/HomePage.styles";
 
 const Wrapper = styled.div`
   display: flex;

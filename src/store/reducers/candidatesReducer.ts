@@ -1,6 +1,6 @@
 import { AnyAction } from "redux";
-import { ActionType } from "store/types";
-import { ICandidatesState } from "types/candidate.types";
+import { ActionType } from "../types";
+import { ICandidatesState } from "../../types/candidate.types";
 
 const initialState: ICandidatesState = {
   candidates: [],

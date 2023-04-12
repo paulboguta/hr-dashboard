@@ -1,6 +1,6 @@
 import { GridRowId, GridSelectionModel } from "@mui/x-data-grid";
-import { ICandidate } from "types/candidate.types";
-import { IJob } from "types/job.types";
+import { ICandidate } from "../../types/candidate.types";
+import { IJob } from "../../types/job.types";
 
 export const requestSearchJobs = (searchValue: string, rows: IJob[]) => {
   const filteredRows = rows.filter((row: IJob) => {

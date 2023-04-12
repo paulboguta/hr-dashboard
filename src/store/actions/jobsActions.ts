@@ -1,7 +1,7 @@
-import { createJob, fetchJobs } from "features/jobs/jobs.service";
-import { AppDispatch } from "store/store";
-import { ActionType } from "store/types";
-import { IJob } from "types/job.types";
+import { createJob, fetchJobs } from "../../features/jobs/jobs.service";
+import { AppDispatch } from "../store";
+import { ActionType } from "../types";
+import { IJob } from "../../types/job.types";
 
 export const getJobs = (jobs: IJob[]) => async (dispatch: AppDispatch) => {
   dispatch({

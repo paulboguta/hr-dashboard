@@ -1,5 +1,5 @@
 import mockAxios from "jest-mock-axios";
-import { formatDate } from "utils/date/formatDate";
+import { formatDate } from "../../utils/date/formatDate";
 import {
   createCandidate,
   deleteCandidate,

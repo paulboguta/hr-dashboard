@@ -1,5 +1,5 @@
-import { GridBlock } from "components/GridBlock/GridBlock";
 import styled from "styled-components";
+import { GridBlock } from "../../components/GridBlock/GridBlock";
 
 export const Wrapper = styled.div`
   background-color: ${(props) => props.theme.background.header};

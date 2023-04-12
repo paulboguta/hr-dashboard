@@ -1,6 +1,6 @@
-import axios from "api/axios";
-import { formatDate } from "utils/date/formatDate";
-import { ICandidate } from "types/candidate.types";
+import axios from "../../api/axios";
+import { formatDate } from "../../utils/date/formatDate";
+import { ICandidate } from "../../types/candidate.types";
 
 export const fetchCandidates = () => {
   return axios.get("/candidates");

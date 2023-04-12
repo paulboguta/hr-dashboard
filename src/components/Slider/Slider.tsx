@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { usePathname } from "hooks/hooks";
-import { ProfileMenu } from "components/ProfileMenu/ProfileMenu";
-import { IModalNavProps } from "types/modal.types";
-import { Desktop, Mobile } from "styles/globalStyles";
+import { usePathname } from "../../hooks/hooks";
+import { ProfileMenu } from "../ProfileMenu/ProfileMenu";
+import { IModalNavProps } from "../../types/modal.types";
+import { Desktop, Mobile } from "../../styles/globalStyles";
 import { Wrapper } from "./Slider.styles";
 import { SliderLinksWrapper } from "./SliderLinks/SliderLinksWrapper";
 

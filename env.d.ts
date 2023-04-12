@@ -1,9 +1,9 @@
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
-      REACT_APP_API: string;
+      VITE_APP_API: string;
     }
   }
 }
 
-export {}
+export {};

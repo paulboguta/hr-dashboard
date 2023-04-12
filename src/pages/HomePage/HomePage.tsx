@@ -1,5 +1,5 @@
-import { ButtonStyled } from "components/Button/Button";
 import { useNavigate } from "react-router-dom";
+import { ButtonStyled } from "../../components/Button/Button";
 import {
   WrapperPage,
   WrapperContent,

@@ -1,21 +1,13 @@
-import { Slider } from "components/Slider/Slider";
-import { Header } from "components/Header/Header";
-import { useAppDispatch, useWindowDimensions } from "hooks/hooks";
 import { useEffect, useState } from "react";
 import {
   GridColDef,
   GridRenderCellParams,
   GridSelectionModel,
 } from "@mui/x-data-grid";
-import { ActionButtons } from "components/Tables/ActionButtons/ActionButtons";
-import { IJob } from "types/job.types";
-import { CreateJobModal } from "components/Modals/Job/CreateJobModal";
 import { useNavigate } from "react-router-dom";
-import { getCurrentJob } from "store/actions/currentJobActions";
-import { deleteJob, deleteJobs } from "features/jobs/jobs.service";
-import { deleteJobAction } from "store/actions/jobsActions";
-import { IModalNavProps } from "types/modal.types";
-import { requestSearchJobs, selectRows } from "utils/table/tableUtils";
+import { useSelector } from "react-redux";
+import { IJob } from "../../types/job.types";
+import { IModalNavProps } from "../../types/modal.types";
 import {
   DeleteButton,
   Search,
@@ -25,9 +17,19 @@ import {
   WrapperActionsSearch,
   AddJobCandidateButton,
   AddJobCandidateButtonMobile,
-} from "components/Tables/Table.styles";
-import { useSelector } from "react-redux";
-import { RootState } from "store/store";
+} from "../../components/Tables/Table.styles";
+import { RootState } from "../../store/store";
+import { requestSearchJobs, selectRows } from "../../utils/table/tableUtils";
+import {
+  deleteJobAction,
+  getCurrentJobActiom,
+} from "../../store/actions/jobsActions";
+import { deleteJob, deleteJobs } from "../../features/jobs/jobs.service";
+import { CreateJobModal } from "../../components/Modals/Job/CreateJobModal";
+import { ActionButtons } from "../../components/Tables/ActionButtons/ActionButtons";
+import { useWindowDimensions } from "../../hooks/hooks";
+import { Header } from "../../components/Header/Header";
+import { Slider } from "../../components/Slider/Slider";
 import { Wrapper, WrapperMain } from "./Jobs.styles";
 
 type IJobsProps = Pick<

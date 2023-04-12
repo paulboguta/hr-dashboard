@@ -1,9 +1,9 @@
-import { Slider } from "components/Slider/Slider";
-import { Header } from "components/Header/Header";
 import { useSelector } from "react-redux";
-import { RootState } from "store/store";
 import styled from "styled-components";
-import { IModalNavProps } from "types/modal.types";
+import { IModalNavProps } from "../../types/modal.types";
+import { Header } from "../../components/Header/Header";
+import { Slider } from "../../components/Slider/Slider";
+import { RootState } from "../../store/store";
 import { ProfileData } from "./ProfileData";
 
 export const Wrapper = styled.div`

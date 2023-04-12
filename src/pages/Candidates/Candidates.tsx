@@ -1,20 +1,12 @@
-import { Slider } from "components/Slider/Slider";
-import { Header } from "components/Header/Header";
 import { useEffect, useState } from "react";
-import { ICandidate } from "types/candidate.types";
 import {
   GridColDef,
   GridRenderCellParams,
   GridSelectionModel,
 } from "@mui/x-data-grid";
-import { ActionButtons } from "components/Tables/ActionButtons/ActionButtons";
-import { useAppDispatch, useWindowDimensions } from "hooks/hooks";
-import { CreateCandidateModal } from "components/Modals/Candidate/CreateCandidateModal";
 import { useNavigate } from "react-router-dom";
-import { getCurrentCandidate } from "store/actions/currentCandidateActions";
-import { deleteCandidate } from "features/candidates/candidates.service";
-import { deleteCandidateAction } from "store/actions/candidatesActions";
-import { IModalNavProps } from "types/modal.types";
+import { useSelector } from "react-redux";
+import { RootState, useAppDispatch } from "../../store/store";
 import {
   AddJobCandidateButton,
   AddJobCandidateButtonMobile,
@@ -24,12 +16,23 @@ import {
   StyledDataGrid,
   WrapperActionsSearch,
   WrapperTable,
-} from "components/Tables/Table.styles";
-import { requestSearchCandidates, selectRows } from "utils/table/tableUtils";
-import { deleteJobs } from "features/jobs/jobs.service";
-import { deleteJobAction } from "store/actions/jobsActions";
-import { useSelector } from "react-redux";
-import { RootState } from "store/store";
+} from "../../components/Tables/Table.styles";
+import {
+  requestSearchCandidates,
+  selectRows,
+} from "../../utils/table/tableUtils";
+import { deleteJobAction } from "../../store/actions/jobsActions";
+import { deleteJobs } from "../../features/jobs/jobs.service";
+import { IModalNavProps } from "../../types/modal.types";
+import { deleteCandidateAction } from "../../store/actions/candidatesActions";
+import { deleteCandidate } from "../../features/candidates/candidates.service";
+import { getCurrentCandidate } from "../../store/actions/currentCandidateActions";
+import { useWindowDimensions } from "../../hooks/hooks";
+import { ICandidate } from "../../types/candidate.types";
+import { CreateCandidateModal } from "../../components/Modals/Candidate/CreateCandidateModal";
+import { ActionButtons } from "../../components/Tables/ActionButtons/ActionButtons";
+import { Header } from "../../components/Header/Header";
+import { Slider } from "../../components/Slider/Slider";
 import { Wrapper, WrapperMain } from "./Cadidates.styles";
 
 type ICandidatesProps = Pick<
