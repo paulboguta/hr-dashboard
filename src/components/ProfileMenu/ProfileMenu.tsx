@@ -5,8 +5,8 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { IModalNavProps } from "types/modal.types";
+import { logoutUser } from "../../store/slices/userSlice";
 import { RootState, useAppDispatch } from "../../store/store";
-import { logoutUser } from "../../store/actions/userActions";
 import { SliderLink } from "../Slider/SliderLinks/SliderLink";
 
 interface IProfileMenuProps extends IModalNavProps {

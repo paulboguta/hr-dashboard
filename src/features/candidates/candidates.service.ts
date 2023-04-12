@@ -6,7 +6,7 @@ export const fetchCandidates = () => {
   return axios.get("/candidates");
 };
 
-export const createCandidate = (
+export const createCandidate = async (
   name: string,
   email: string,
   position: string,
@@ -15,7 +15,7 @@ export const createCandidate = (
   longDescription: string,
   logo: string
 ) => {
-  return axios.post(`/candidates`, {
+  await axios.post(`/candidates`, {
     name,
     position,
     email,
@@ -25,6 +25,9 @@ export const createCandidate = (
     logo,
     companyName,
   });
+
+  const candidates = await fetchCandidates();
+  return candidates.data;
 };
 
 export const deleteCandidates = (candidates: ICandidate[]) => {

@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
+import { selectCurrentJob } from "../../../store/slices/currentJobSlice";
 import { Header } from "../../../components/Header/Header";
 import { Slider } from "../../../components/Slider/Slider";
-import { RootState } from "../../../store/store";
 import { IModalNavProps } from "../../../types/modal.types";
 import { Wrapper, WrapperMain } from "../Jobs.styles";
 import {
@@ -31,9 +31,8 @@ export const Job = ({
   isShowingNavigation,
   navigationOff,
 }: IJobProps) => {
-  const { title, shortDescription, longDescription, logo, date } = useSelector(
-    (state: RootState) => state.rootReducer.currentJobReducer
-  );
+  const { title, shortDescription, longDescription, logo, date } =
+    useSelector(selectCurrentJob);
 
   return (
     <Wrapper>

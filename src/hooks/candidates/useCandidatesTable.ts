@@ -5,11 +5,13 @@ import {
   requestSearchCandidates,
   selectRows,
 } from "../../utils/table/tableUtils";
-import { deleteJobs } from "../../features/jobs/jobs.service";
-import { deleteJobAction } from "../../store/actions/jobsActions";
-import { deleteCandidate } from "../../features/candidates/candidates.service";
-import { deleteCandidateAction } from "../../store/actions/candidatesActions";
-import { getCurrentCandidate } from "../../store/actions/currentCandidateActions";
+import { deleteJobAction } from "../../store/slices/jobsSlice";
+import {
+  deleteCandidate,
+  deleteCandidates,
+} from "../../features/candidates/candidates.service";
+import { deleteCandidateAction } from "../../store/slices/candidatesSlice";
+import { getCandidate } from "../../store/slices/currentCandidateSlice";
 import { useAppDispatch } from "../../store/store";
 import { ICandidate } from "../../types/candidate.types";
 import { useCandidates } from "./useCandidates";
@@ -27,13 +29,17 @@ export const useCandidatesTable = () => {
   const { data } = useCandidates();
 
   const onClickOpen = (cell: GridRenderCellParams) => {
-    dispatch(getCurrentCandidate(cell.row));
+    const thisCandidate = data.find((job) => job.id === cell.row.id);
+    dispatch(getCandidate(thisCandidate));
     navigate(`/candidates/${cell.row.id}`);
   };
 
   const onClickDeleteOneCandidate = async (cell: GridRenderCellParams) => {
     await deleteCandidate(cell.row.id);
-    dispatch(deleteCandidateAction());
+    const newCandidates = data.filter((job) => {
+      return job.id !== cell.row.id;
+    });
+    dispatch(deleteCandidateAction(newCandidates));
   };
 
   const onChangeSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,8 +53,11 @@ export const useCandidatesTable = () => {
   };
 
   const onClickDelete = () => {
-    deleteJobs(selectedRows);
-    dispatch(deleteJobAction());
+    deleteCandidates(selectedRows);
+    const newCandidates = data.filter((job) => {
+      return !selectedRows.includes(job);
+    });
+    dispatch(deleteJobAction(newCandidates));
     setSelectedValue("Actions");
   };
 

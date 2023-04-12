@@ -2,8 +2,12 @@ import { useFormik } from "formik";
 import { useMemo } from "react";
 import { IconContext } from "react-icons";
 import { AiOutlineClose } from "react-icons/ai";
+import {
+  createCandidate,
+  fetchCandidates,
+} from "../../../features/candidates/candidates.service";
 import { useAppDispatch } from "../../../store/store";
-import { createCandidateAction } from "../../../store/actions/candidatesActions";
+import { createCandidateAction } from "../../../store/slices/candidatesSlice";
 import { IModalNavProps } from "../../../types/modal.types";
 import {
   ButtonClose,
@@ -33,18 +37,26 @@ export const CreateCandidateModal = ({
       position: "",
       email: "",
     },
-    onSubmit: (values) => {
-      dispatch(
-        createCandidateAction(
-          values.title,
-          values.email,
-          values.position,
-          values.companyName,
-          values.shortDescription,
-          values.longDescription,
-          values.logo
-        )
+    onSubmit: async ({
+      title,
+      position,
+      email,
+      shortDescription,
+      longDescription,
+      logo,
+      companyName,
+    }) => {
+      await createCandidate(
+        title,
+        position,
+        email,
+        shortDescription,
+        longDescription,
+        logo,
+        companyName
       );
+      const newCandidates = await fetchCandidates();
+      dispatch(createCandidateAction(newCandidates.data));
       modalCreateToggle?.();
     },
   });

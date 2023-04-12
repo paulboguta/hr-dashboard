@@ -5,8 +5,8 @@ import { deleteJob, deleteJobs } from "../../features/jobs/jobs.service";
 import { requestSearchJobs, selectRows } from "../../utils/table/tableUtils";
 import { IJob } from "../../types/job.types";
 import { useAppDispatch } from "../../store/store";
-import { deleteJobAction } from "../../store/actions/jobsActions";
-import { getCurrentJob } from "../../store/actions/currentJobActions";
+import { deleteJobAction } from "../../store/slices/jobsSlice";
+import { getJob } from "../../store/slices/currentJobSlice";
 import { useJobs } from "./useJobs";
 
 export const useJobsTable = () => {
@@ -30,20 +30,27 @@ export const useJobsTable = () => {
     setSelectedValue(event.target.value);
   };
 
-  const onClickDelete = () => {
+  const onClickDelete = async () => {
     deleteJobs(selectedRows);
-    dispatch(deleteJobAction());
+    const newJobs = data.filter((job) => {
+      return !selectedRows.includes(job);
+    });
+    dispatch(deleteJobAction(newJobs));
     setSelectedValue("Actions");
   };
 
   const onClickOpen = (cell: GridRenderCellParams) => {
-    dispatch(getCurrentJob(cell.row));
+    const thisJob = data.find((job) => job.id === cell.row.id);
+    dispatch(getJob(thisJob));
     navigate(`/jobs/${cell.row.id}`);
   };
 
   const onClickDeleteOneJob = async (cell: GridRenderCellParams) => {
     await deleteJob(cell.row.id);
-    dispatch(deleteJobAction());
+    const newJobs = data.filter((job) => {
+      return job.id !== cell.row.id;
+    });
+    dispatch(deleteJobAction(newJobs));
   };
 
   useEffect(() => {

@@ -16,14 +16,14 @@ export const deleteJob = (id: number) => {
   return axios.delete(`/jobs/${id}`);
 };
 
-export const createJob = (
+export const createJob = async (
   title: string,
   companyName: string,
   shortDescription: string,
   longDescription: string,
   logo: string
 ) => {
-  return axios.post(`/jobs`, {
+  await axios.post(`/jobs`, {
     title,
     date: formatDate(new Date()),
     shortDescription,
@@ -31,4 +31,7 @@ export const createJob = (
     logo,
     companyName,
   });
+
+  const jobs = await fetchJobs();
+  return jobs.data;
 };

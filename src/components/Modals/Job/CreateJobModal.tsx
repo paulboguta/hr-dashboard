@@ -2,8 +2,9 @@ import { useFormik } from "formik";
 import { useMemo } from "react";
 import { IconContext } from "react-icons";
 import { AiOutlineClose } from "react-icons/ai";
+import { createJob, fetchJobs } from "../../../features/jobs/jobs.service";
 import { IModalNavProps } from "../../../types/modal.types";
-import { createJobAction } from "../../../store/actions/jobsActions";
+import { createJobAction } from "../../../store/slices/jobsSlice";
 import { useAppDispatch } from "../../../store/store";
 import {
   ButtonClose,
@@ -31,16 +32,22 @@ export const CreateJobModal = ({ modalCreateToggle }: ICreateJobModalProps) => {
       position: "",
       email: "",
     },
-    onSubmit: (values) => {
-      dispatch(
-        createJobAction(
-          values.title,
-          values.companyName,
-          values.shortDescription,
-          values.longDescription,
-          values.logo
-        )
+    onSubmit: async ({
+      title,
+      companyName,
+      shortDescription,
+      longDescription,
+      logo,
+    }) => {
+      await createJob(
+        title,
+        companyName,
+        shortDescription,
+        longDescription,
+        logo
       );
+      const newJobs = await fetchJobs();
+      dispatch(createJobAction(newJobs.data));
       modalCreateToggle?.();
     },
   });

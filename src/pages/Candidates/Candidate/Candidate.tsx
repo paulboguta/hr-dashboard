@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { selectCurrentCandidate } from "../../../store/slices/currentCandidateSlice";
 import { IModalNavProps } from "../../types/modal.types";
 import { Header } from "../../../components/Header/Header";
 import { Slider } from "../../../components/Slider/Slider";
@@ -11,7 +12,6 @@ import {
   ShortDesc,
   LongDesc,
 } from "../../Jobs/Job/Job.styles";
-import { RootState } from "../../../store/store";
 import {
   Experience,
   Skills,
@@ -40,9 +40,7 @@ export const Candidate = ({
     longDescription,
     logo,
     companyName,
-  } = useSelector(
-    (state: RootState) => state.rootReducer.currentCandidateReducer
-  );
+  } = useSelector(selectCurrentCandidate);
 
   return (
     <Wrapper>

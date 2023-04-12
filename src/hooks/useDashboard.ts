@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { fetchCandidates } from "../features/candidates/candidates.service";
 import { fetchJobs } from "../features/jobs/jobs.service";
-import { getCandidates } from "../store/actions/candidatesActions";
-import { getJobs } from "../store/actions/jobsActions";
+import { getCandidates } from "../store/slices/candidatesSlice";
+import { getJobs } from "../store/slices/jobsSlice";
 import { useAppDispatch } from "../store/store";
 
 export const useDashboard = () => {
