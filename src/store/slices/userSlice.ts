@@ -21,11 +21,13 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     loginUser: (state, action) => {
+      const { firstname, lastname, username } = action.payload.user.data;
+      console.log(action.payload);
       return {
         user: {
-          firstname: action.payload.user.firstname,
-          lastname: action.payload.user.lastname,
-          username: action.payload.user.username,
+          firstname,
+          lastname,
+          username,
           token: action.payload.token,
         },
       };

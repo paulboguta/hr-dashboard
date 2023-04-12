@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { Candidate } from "./pages/Candidates/Candidate/Candidate";
 import { Candidates } from "./pages/Candidates/Candidates";
@@ -17,45 +16,11 @@ const App = () => {
       <Route path="/signup" element={<SignUp />} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/dashboard" element={<Dashboard />} />
-      <Route
-        path="/jobs"
-        element={
-          <Jobs
-
-          />
-        }
-      />
-      <Route
-        path="/jobs/:id"
-        element={
-          <Job/>
-        }
-      />
-      <Route
-        path="/candidates"
-        element={
-          <Candidates
-            
-          />
-        }
-      />
-      <Route
-        path="/candidates/:id"
-        element={
-          <Candidate
-            
-          />
-        }
-      />
-
-      <Route
-        path="/profile"
-        element={
-          <Profile
-           
-          />
-        }
-      />
+      <Route path="/jobs" element={<Jobs />} />
+      <Route path="/jobs/:id" element={<Job />} />
+      <Route path="/candidates" element={<Candidates />} />
+      <Route path="/candidates/:id" element={<Candidate />} />
+      <Route path="/profile" element={<Profile />} />
     </Routes>
   );
 };

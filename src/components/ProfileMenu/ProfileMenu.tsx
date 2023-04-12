@@ -4,14 +4,11 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { IModalNavProps } from "types/modal.types";
-import { logoutUser } from "../../store/slices/userSlice";
-import { RootState, useAppDispatch } from "../../store/store";
+import { usePathname } from "../../hooks/hooks";
+import { useModals } from "../../hooks/useModals";
+import { logoutUser, selectUser } from "../../store/slices/userSlice";
+import { useAppDispatch } from "../../store/store";
 import { SliderLink } from "../Slider/SliderLinks/SliderLink";
-
-interface IProfileMenuProps extends IModalNavProps {
-  path: string;
-}
 
 const Wrapper = styled.div`
   width: 240px;
@@ -36,7 +33,7 @@ const Name = styled.div`
   font-size: 24px;
 `;
 
-export const ProfileMenu = ({ path, navigationOff }: IProfileMenuProps) => {
+export const ProfileMenu = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [user, setUser] = useState({
@@ -44,9 +41,9 @@ export const ProfileMenu = ({ path, navigationOff }: IProfileMenuProps) => {
     lname: "",
     token: "",
   });
-  const { firstname, lastname, token } = useSelector(
-    (state: RootState) => state.rootReducer.userReducer
-  );
+  const { firstname, lastname, token } = useSelector(selectUser);
+  const path = usePathname();
+  const { hideNav } = useModals();
 
   useEffect(() => {
     setUser({ fname: firstname, lname: lastname, token });
@@ -54,13 +51,11 @@ export const ProfileMenu = ({ path, navigationOff }: IProfileMenuProps) => {
 
   const onClickNavigateToProfile = () => {
     navigate(user.token.length ? "/profile" : "/");
-    navigationOff?.();
   };
 
   const onClickLogout = () => {
-    dispatch(logoutUser());
+    dispatch(logoutUser(""));
     navigate("/");
-    navigationOff?.();
   };
 
   return (
