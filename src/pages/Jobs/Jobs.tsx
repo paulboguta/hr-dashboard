@@ -1,6 +1,5 @@
 import { useJobsTable } from "../../hooks/jobs/useJobsTable";
 import { useJobsColumns } from "../../hooks/jobs/useJobsColumns";
-import { IModalNavProps } from "../../types/modal.types";
 import {
   DeleteButton,
   Search,
@@ -16,24 +15,9 @@ import { useWindowDimensions } from "../../hooks/hooks";
 import { Header } from "../../components/Header/Header";
 import { Slider } from "../../components/Slider/Slider";
 import { Wrapper, WrapperMain } from "./Jobs.styles";
+import { useModals } from "../../hooks/useModals";
 
-type IJobsProps = Pick<
-  IModalNavProps,
-  | "isShowingCreate"
-  | "modalCreateOff"
-  | "modalCreateToggle"
-  | "navigationToggle"
-  | "navigationOff"
-  | "isShowingNavigation"
->;
-export const Jobs = ({
-  isShowingCreate,
-  modalCreateOff,
-  modalCreateToggle,
-  navigationToggle,
-  navigationOff,
-  isShowingNavigation,
-}: IJobsProps) => {
+export const Jobs = () => {
   const {
     selectionModel,
     onChangeSelect,
@@ -49,22 +33,22 @@ export const Jobs = ({
   } = useJobsTable();
 
   const { columns, columnsMobile } = useJobsColumns();
+  const {
+    toShowModalCreate,
+    toggleModalCreate,
+  } = useModals();
 
   const windowDimenions = useWindowDimensions();
 
   return (
     <Wrapper>
-      {isShowingCreate ? (
-        <CreateJobModal modalCreateToggle={modalCreateToggle} />
+      {toShowModalCreate ? (
+        <CreateJobModal modalCreateToggle={toggleModalCreate} />
       ) : null}
-      <Header navigationToggle={navigationToggle} />
+      <Header />
       <WrapperMain>
-        <Slider
-          modalCreateOff={modalCreateOff}
-          isShowingNavigation={isShowingNavigation}
-          navigationOff={navigationOff}
-        />
-        <AddJobCandidateButtonMobile onClick={modalCreateToggle}>
+        <Slider />
+        <AddJobCandidateButtonMobile onClick={toggleModalCreate}>
           Add Job Offer
         </AddJobCandidateButtonMobile>
         <WrapperTable>
@@ -87,7 +71,7 @@ export const Jobs = ({
               onChange={onChangeSearch}
             />
 
-            <AddJobCandidateButton onClick={modalCreateToggle}>
+            <AddJobCandidateButton onClick={toggleModalCreate}>
               Add Job Offer
             </AddJobCandidateButton>
           </WrapperActionsSearch>

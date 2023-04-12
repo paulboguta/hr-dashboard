@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 import { selectCurrentJob } from "../../../store/slices/currentJobSlice";
 import { Header } from "../../../components/Header/Header";
 import { Slider } from "../../../components/Slider/Slider";
-import { IModalNavProps } from "../../../types/modal.types";
 import { Wrapper, WrapperMain } from "../Jobs.styles";
 import {
   DateSalaryFlex,
@@ -17,32 +16,15 @@ import {
   WrapperTop,
 } from "./Job.styles";
 
-type IJobProps = Pick<
-  IModalNavProps,
-  | "navigationOff"
-  | "navigationToggle"
-  | "isShowingNavigation"
-  | "modalCreateOff"
->;
-
-export const Job = ({
-  navigationToggle,
-  modalCreateOff,
-  isShowingNavigation,
-  navigationOff,
-}: IJobProps) => {
+export const Job = () => {
   const { title, shortDescription, longDescription, logo, date } =
     useSelector(selectCurrentJob);
 
   return (
     <Wrapper>
-      <Header navigationToggle={navigationToggle} />
+      <Header />
       <WrapperMain>
-        <Slider
-          modalCreateOff={modalCreateOff}
-          isShowingNavigation={isShowingNavigation}
-          navigationOff={navigationOff}
-        />
+        <Slider />
         <WrapperJob>
           <WrapperTop>
             <H2>{title}</H2>

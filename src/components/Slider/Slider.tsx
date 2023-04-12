@@ -1,45 +1,32 @@
-import { useEffect, useState } from "react";
 import { usePathname } from "../../hooks/hooks";
 import { ProfileMenu } from "../ProfileMenu/ProfileMenu";
-import { IModalNavProps } from "../../types/modal.types";
 import { Desktop, Mobile } from "../../styles/globalStyles";
 import { Wrapper } from "./Slider.styles";
 import { SliderLinksWrapper } from "./SliderLinks/SliderLinksWrapper";
+import { useModals } from "../../hooks/useModals";
 
-type ISliderProps = Pick<
-  IModalNavProps,
-  "modalCreateOff" | "isShowingNavigation" | "navigationOff"
->;
-
-export const Slider = ({
-  modalCreateOff,
-  isShowingNavigation,
-  navigationOff,
-}: ISliderProps) => {
-  const [path, setPath] = useState("");
+export const Slider = () => {
   const pathname = usePathname();
 
-  // check for current path on every url change
-  useEffect(() => {
-    setPath(pathname);
-  }, [pathname]);
+  const { toShowNav, hideModalCreate, hideNav } = useModals();
+
   return (
-    <Wrapper navigationClicked={isShowingNavigation}>
-      {isShowingNavigation ? (
-        <ProfileMenu path={path} navigationOff={navigationOff} />
+    <Wrapper navigationClicked={toShowNav}>
+      {toShowNav ? (
+        <ProfileMenu path={pathname} navigationOff={hideNav} />
       ) : null}
       <Mobile>
-        {isShowingNavigation ? (
+        {toShowNav ? (
           <SliderLinksWrapper
-            modalCreateOff={modalCreateOff}
-            navigationOff={navigationOff}
+            modalCreateOff={hideModalCreate}
+            navigationOff={hideNav}
           />
         ) : null}
       </Mobile>
       <Desktop>
         <SliderLinksWrapper
-          modalCreateOff={modalCreateOff}
-          navigationOff={navigationOff}
+          modalCreateOff={hideModalCreate}
+          navigationOff={hideNav}
         />
       </Desktop>
     </Wrapper>

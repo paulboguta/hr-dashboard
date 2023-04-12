@@ -3,7 +3,7 @@ import { CgProfile } from "react-icons/cg";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IconContext } from "react-icons";
 import { useMemo } from "react";
-import { IModalNavProps } from "types/modal.types";
+import { useModals } from "../../hooks/useModals";
 import { HeaderStyled } from "../../pages/HomePage/HomePage.styles";
 
 const Wrapper = styled.div`
@@ -43,9 +43,9 @@ const IconMobile = styled(GiHamburgerMenu)`
   }
 `;
 
-type IHeaderProps = Pick<IModalNavProps, "navigationToggle">;
+export const Header = () => {
+  const { toggleNav } = useModals();
 
-export const Header = ({ navigationToggle }: IHeaderProps) => {
   const iconValues = useMemo(
     () => ({
       size: "32px",
@@ -56,7 +56,7 @@ export const Header = ({ navigationToggle }: IHeaderProps) => {
   return (
     <Wrapper>
       <HeaderStyled>HR Analytics</HeaderStyled>
-      <ProfileNavigation onClick={navigationToggle}>
+      <ProfileNavigation onClick={toggleNav}>
         <IconContext.Provider value={iconValues}>
           <Icon />
           <IconMobile />

@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import { selectCurrentCandidate } from "../../../store/slices/currentCandidateSlice";
-import { IModalNavProps } from "../../types/modal.types";
 import { Header } from "../../../components/Header/Header";
 import { Slider } from "../../../components/Slider/Slider";
 import {
@@ -19,20 +18,7 @@ import {
   WrapperTopCandidate,
 } from "./Candidate.styles";
 
-type ICandidateProps = Pick<
-  IModalNavProps,
-  | "modalCreateOff"
-  | "isShowingNavigation"
-  | "navigationOff"
-  | "navigationToggle"
->;
-
-export const Candidate = ({
-  modalCreateOff,
-  isShowingNavigation,
-  navigationOff,
-  navigationToggle,
-}: ICandidateProps) => {
+export const Candidate = () => {
   const {
     name,
     position,
@@ -44,12 +30,10 @@ export const Candidate = ({
 
   return (
     <Wrapper>
-      <Header navigationToggle={navigationToggle} />
+      <Header />
       <WrapperMain>
         <Slider
-          modalCreateOff={modalCreateOff}
-          isShowingNavigation={isShowingNavigation}
-          navigationOff={navigationOff}
+          
         />
         <WrapperCandidate>
           <WrapperTopCandidate>

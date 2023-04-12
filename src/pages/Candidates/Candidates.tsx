@@ -10,31 +10,14 @@ import {
   WrapperActionsSearch,
   WrapperTable,
 } from "../../components/Tables/Table.styles";
-import { IModalNavProps } from "../../types/modal.types";
 import { useWindowDimensions } from "../../hooks/hooks";
 import { CreateCandidateModal } from "../../components/Modals/Candidate/CreateCandidateModal";
 import { Header } from "../../components/Header/Header";
 import { Slider } from "../../components/Slider/Slider";
 import { Wrapper, WrapperMain } from "./Cadidates.styles";
+import { useModals } from "../../hooks/useModals";
 
-type ICandidatesProps = Pick<
-  IModalNavProps,
-  | "isShowingCreate"
-  | "modalCreateOff"
-  | "modalCreateToggle"
-  | "navigationToggle"
-  | "navigationOff"
-  | "isShowingNavigation"
->;
-
-export const Candidates = ({
-  isShowingCreate,
-  modalCreateOff,
-  modalCreateToggle,
-  navigationToggle,
-  navigationOff,
-  isShowingNavigation,
-}: ICandidatesProps) => {
+export const Candidates = () => {
   const {
     selectionModel,
     onChangeSelect,
@@ -48,22 +31,21 @@ export const Candidates = ({
     setPageSize,
     setSelectionModel,
   } = useCandidatesTable();
+  const {toShowModalCreate, toggleModalCreate } = useModals();
   const { columns, columnsMobile } = useCandidatesColumns();
   const windowDimenions = useWindowDimensions();
 
   return (
     <Wrapper>
-      {isShowingCreate ? (
-        <CreateCandidateModal modalCreateToggle={modalCreateToggle} />
+      {toShowModalCreate ? (
+        <CreateCandidateModal modalCreateToggle={toggleModalCreate} />
       ) : null}
-      <Header navigationToggle={navigationToggle} />
+      <Header />
       <WrapperMain>
         <Slider
-          modalCreateOff={modalCreateOff}
-          isShowingNavigation={isShowingNavigation}
-          navigationOff={navigationOff}
+        
         />
-        <AddJobCandidateButtonMobile onClick={modalCreateToggle}>
+        <AddJobCandidateButtonMobile onClick={toggleModalCreate}>
           Add Candidate
         </AddJobCandidateButtonMobile>
         <WrapperTable>
@@ -86,7 +68,7 @@ export const Candidates = ({
               onChange={onChangeSearch}
             />
 
-            <AddJobCandidateButton onClick={modalCreateToggle}>
+            <AddJobCandidateButton onClick={toggleModalCreate}>
               Add Job Offer
             </AddJobCandidateButton>
           </WrapperActionsSearch>
