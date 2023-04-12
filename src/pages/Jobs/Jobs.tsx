@@ -1,12 +1,5 @@
-import { useEffect, useState } from "react";
-import {
-  GridColDef,
-  GridRenderCellParams,
-  GridSelectionModel,
-} from "@mui/x-data-grid";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { IJob } from "../../types/job.types";
+import { useJobsTable } from "../../hooks/jobs/useJobsTable";
+import { useJobsColumns } from "../../hooks/jobs/useJobsColumns";
 import { IModalNavProps } from "../../types/modal.types";
 import {
   DeleteButton,
@@ -18,15 +11,7 @@ import {
   AddJobCandidateButton,
   AddJobCandidateButtonMobile,
 } from "../../components/Tables/Table.styles";
-import { RootState } from "../../store/store";
-import { requestSearchJobs, selectRows } from "../../utils/table/tableUtils";
-import {
-  deleteJobAction,
-  getCurrentJobActiom,
-} from "../../store/actions/jobsActions";
-import { deleteJob, deleteJobs } from "../../features/jobs/jobs.service";
 import { CreateJobModal } from "../../components/Modals/Job/CreateJobModal";
-import { ActionButtons } from "../../components/Tables/ActionButtons/ActionButtons";
 import { useWindowDimensions } from "../../hooks/hooks";
 import { Header } from "../../components/Header/Header";
 import { Slider } from "../../components/Slider/Slider";
@@ -49,102 +34,23 @@ export const Jobs = ({
   navigationOff,
   isShowingNavigation,
 }: IJobsProps) => {
-  const [data, setData] = useState<IJob[]>([]);
-  const [searchedData, setSearchedData] = useState<IJob[]>([]);
-  const [pageSize, setPageSize] = useState<number>(5);
-  const [selectionModel, setSelectionModel] = useState<GridSelectionModel>([]);
-  const [searchText, setSearchText] = useState<string>("");
-  const [selectedRows, setSelectedRows] = useState<IJob[]>([]);
-  const [selectedValue, setSelectedValue] = useState("");
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  const {
+    selectionModel,
+    onChangeSelect,
+    selectedValue,
+    onClickDelete,
+    searchText,
+    onChangeSearch,
+    searchedData,
+    pageSize,
+    data,
+    setPageSize,
+    setSelectionModel,
+  } = useJobsTable();
+
+  const { columns, columnsMobile } = useJobsColumns();
+
   const windowDimenions = useWindowDimensions();
-
-  const { jobs } = useSelector(
-    (state: RootState) => state.rootReducer.jobsReducer
-  );
-
-  const onClickOpen = (cell: GridRenderCellParams) => {
-    dispatch(getCurrentJob(cell.row));
-    navigate(`/jobs/${cell.row.id}`);
-  };
-
-  const onClickDeleteOneJob = async (cell: GridRenderCellParams) => {
-    await deleteJob(cell.row.id);
-    dispatch(deleteJobAction());
-  };
-
-  const onChangeSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchText(event.target.value);
-    setSearchedData(requestSearchJobs(event.target.value, data));
-  };
-
-  const onChangeSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    event.preventDefault();
-    setSelectedValue(event.target.value);
-  };
-
-  const onClickDelete = () => {
-    deleteJobs(selectedRows);
-    dispatch(deleteJobAction());
-    setSelectedValue("Actions");
-  };
-
-  const columns: GridColDef[] = [
-    {
-      field: "title",
-      headerName: "First name",
-      minWidth: 200,
-    },
-    {
-      field: "date",
-      headerName: "Date",
-      minWidth: 100,
-    },
-    {
-      field: "",
-      headerName: "Action",
-      sortable: false,
-      renderCell: (cell) => (
-        <ActionButtons
-          onClickOpen={() => onClickOpen(cell)}
-          onClickDelete={() => onClickDeleteOneJob(cell)}
-        />
-      ),
-      minWidth: 80,
-    },
-  ];
-
-  const columnsMobile: GridColDef[] = [
-    {
-      field: "title",
-      headerName: "First name",
-      minWidth: 140,
-    },
-    {
-      field: "",
-      headerName: "Action",
-      sortable: false,
-      renderCell: (cell) => (
-        <ActionButtons
-          onClickOpen={() => onClickOpen(cell)}
-          onClickDelete={() => onClickDeleteOneJob(cell)}
-        />
-      ),
-      minWidth: 40,
-    },
-  ];
-
-  // get data from store when deleting/adding job
-  useEffect(() => {
-    setData(Object.values(jobs));
-  }, [jobs]);
-
-  useEffect(() => {
-    const tempArr: IJob[] = [];
-    selectRows({ tempArr, data, selectionModel });
-    setSelectedRows(tempArr);
-  }, [data, selectionModel]);
 
   return (
     <Wrapper>
@@ -199,7 +105,6 @@ export const Jobs = ({
             }}
             selectionModel={selectionModel}
             disableColumnMenu
-            autoHeight
           />
         </WrapperTable>
       </WrapperMain>
