@@ -1,6 +1,9 @@
-import { Header } from "components/Header/Header";
-import { Slider } from "components/Slider/Slider";
-import { usePathname } from "hooks/hooks";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { IModalNavProps } from "../../types/modal.types";
+import { Header } from "../../../components/Header/Header";
+import { Slider } from "../../../components/Slider/Slider";
+import { usePathname } from "../../../hooks/hooks";
 import {
   Wrapper,
   WrapperMain,
@@ -9,11 +12,8 @@ import {
   WrapperContent,
   ShortDesc,
   LongDesc,
-} from "pages/Jobs/Job/Job.styles";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "store/store";
-import { IModalNavProps } from "types/modal.types";
+} from "../../Jobs/Job/Job.styles";
+import { RootState } from "../../../store/store";
 import {
   Experience,
   Skills,

@@ -1,6 +1,6 @@
-import { AppDispatch } from "store/store";
-import { ActionType } from "store/types";
-import { IJob } from "types/job.types";
+import { AppDispatch } from "../store";
+import { ActionType } from "../types";
+import { IJob } from "../../types/job.types";
 
 export const getCurrentJob = (job: IJob) => async (dispatch: AppDispatch) => {
   dispatch({

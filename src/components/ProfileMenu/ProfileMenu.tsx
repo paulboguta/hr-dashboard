@@ -1,14 +1,13 @@
-import { SliderLink } from "components/Slider/SliderLinks/SliderLink";
 import { BsPerson } from "react-icons/bs";
 import { AiOutlineLogout } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "store/store";
-import { logoutUser } from "store/actions/userActions";
-import { useAppDispatch } from "hooks/hooks";
 import { IModalNavProps } from "types/modal.types";
+import { RootState, useAppDispatch } from "../../store/store";
+import { logoutUser } from "../../store/actions/userActions";
+import { SliderLink } from "../Slider/SliderLinks/SliderLink";
 
 interface IProfileMenuProps extends IModalNavProps {
   path: string;

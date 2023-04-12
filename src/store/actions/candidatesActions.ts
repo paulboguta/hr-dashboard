@@ -1,10 +1,10 @@
+import { ActionType } from "../types";
+import { ICandidate } from "../../types/candidate.types";
 import {
   createCandidate,
   fetchCandidates,
-} from "features/candidates/candidates.service";
-import { AppDispatch } from "store/store";
-import { ActionType } from "store/types";
-import { ICandidate } from "types/candidate.types";
+} from "../../features/candidates/candidates.service";
+import { AppDispatch } from "../store";
 
 export const getCandidates =
   (candidates: ICandidate[]) => async (dispatch: AppDispatch) => {

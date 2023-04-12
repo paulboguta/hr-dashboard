@@ -1,9 +1,9 @@
+import styled from "styled-components";
 import {
   Requirements,
   WrapperJob,
   WrapperTop,
-} from "pages/Jobs/Job/Job.styles";
-import styled from "styled-components";
+} from "../../Jobs/Job/Job.styles";
 
 export const WrapperCandidate = styled(WrapperJob)``;
 export const WrapperTopCandidate = styled(WrapperTop)``;

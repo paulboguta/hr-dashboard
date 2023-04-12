@@ -1,10 +1,10 @@
 import { useFormik } from "formik";
-import { useAppDispatch } from "hooks/hooks";
 import { useMemo } from "react";
 import { IconContext } from "react-icons";
 import { AiOutlineClose } from "react-icons/ai";
-import { createCandidateAction } from "store/actions/candidatesActions";
-import { IModalNavProps } from "types/modal.types";
+import { useAppDispatch } from "../../../store/store";
+import { createCandidateAction } from "../../../store/actions/candidatesActions";
+import { IModalNavProps } from "../../../types/modal.types";
 import {
   ButtonClose,
   Header,

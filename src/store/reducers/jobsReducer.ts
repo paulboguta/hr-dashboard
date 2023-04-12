@@ -1,6 +1,6 @@
 import { AnyAction } from "redux";
-import { ActionType } from "store/types";
-import { IJobsState } from "types/job.types";
+import { ActionType } from "../types";
+import { IJobsState } from "../../types/job.types";
 
 const initialState: IJobsState = {
   jobs: [],

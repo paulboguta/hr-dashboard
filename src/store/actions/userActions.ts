@@ -1,6 +1,6 @@
-import { getUserProfile } from "features/auth/auth.service";
-import { AppDispatch } from "store/store";
-import { ActionType } from "store/types";
+import { getUserProfile } from "../../features/auth/auth.service";
+import { AppDispatch } from "../store";
+import { ActionType } from "../types";
 
 export const loginUser =
   (response: string) => async (dispatch: AppDispatch) => {

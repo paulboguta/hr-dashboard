@@ -1,6 +1,6 @@
 import { AnyAction } from "redux";
-import { ActionType } from "store/types";
-import { IJob } from "types/job.types";
+import { ActionType } from "../types";
+import { IJob } from "../../types/job.types";
 
 const initialState: IJob = {
   title: "",

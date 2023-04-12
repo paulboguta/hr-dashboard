@@ -10,39 +10,11 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { loginUser } from "store/actions/userActions";
-import { ErrorMessage } from "styles/globalStyles";
-import { useNavigate } from "react-router-dom";
-import { signin } from "features/auth/auth.service";
-import { useState } from "react";
-import { useAppDispatch } from "hooks/hooks";
-import { useFormik } from "formik";
-import { SigninSchema } from "features/validation/validation";
+import { ErrorMessage } from "../../styles/globalStyles";
+import { useAuth } from "../../hooks/useAuth";
 
 export const SignIn = () => {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const [userExists, setUserExists] = useState(true);
-
-  const formik = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
-    validationSchema: SigninSchema,
-    onSubmit: async (values) => {
-      const { email, password } = values;
-
-      try {
-        const response = await signin(email, password);
-        dispatch(loginUser(response.data.access_token));
-        navigate("/dashboard");
-      } catch (e) {
-        setUserExists(false);
-      }
-    },
-  });
-
+  const { formikSignIn: formik, userExists } = useAuth();
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
